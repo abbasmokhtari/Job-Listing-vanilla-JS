@@ -4,7 +4,7 @@ fetch('./data.json')
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
-    let testelement = data.map((x) => x.position);
+    let testelement = data.map((x) => x.languages);
     console.log(testelement);
     data
       .map((x) =>
@@ -19,7 +19,7 @@ fetch('./data.json')
           x.featured,
           x.role,
           x.level,
-          x.language
+          x.languages
         )
       )
       .forEach((x) => rootElement.appendChild(x));
@@ -36,11 +36,11 @@ const mainBlock = (
   addFeatured,
   role,
   level,
-  language
+  languages
 ) => {
   let mainDiv = document.createElement('div');
   let logoElement = document.createElement('img');
-  let companyName = document.createElement('p');
+  let companyName = document.createElement('div');
   let positionName = document.createElement('p');
   let jobStatus = document.createElement('p');
   let newItem = document.createElement('div');
@@ -49,6 +49,25 @@ const mainBlock = (
   let roleItem = document.createElement('div');
   let levelItem = document.createElement('div');
   let languageItem = document.createElement('div');
+
+  //css groups
+  let groupOne = document.createElement('div');
+  let groupTwo = document.createElement('div');
+  let groupThree = document.createElement('div');
+
+  const divMaker = (params) => {
+    let regularDiv = document.createElement('div');
+    regularDiv.innerText = params;
+    return regularDiv;
+  };
+
+  //extracts array elements
+  const arrayValue = (params, group) => {
+    let iterator = params.values();
+    for (let value of iterator) {
+      group.appendChild(divMaker(value));
+    }
+  };
 
   logoElement.src = logo;
   companyName.innerText = company;
@@ -63,35 +82,29 @@ const mainBlock = (
 
   requiredSkills.appendChild(roleItem);
   requiredSkills.appendChild(levelItem);
+  arrayValue(languages, languageItem);
+  requiredSkills.appendChild(languageItem);
 
-  mainDiv.appendChild(logoElement);
-  mainDiv.appendChild(companyName);
-  mainDiv.appendChild(positionName);
-  mainDiv.appendChild(jobStatus);
-  mainDiv.appendChild(newItem);
-  mainDiv.appendChild(featuredItem);
+  groupThree.appendChild(companyName);
+  groupThree.appendChild(newItem);
+  groupThree.appendChild(featuredItem);
+
+  groupTwo.appendChild(groupThree);
+  groupTwo.appendChild(positionName);
+  groupTwo.appendChild(jobStatus);
+
+  groupOne.appendChild(logoElement);
+  groupOne.appendChild(groupTwo);
+
+  mainDiv.appendChild(groupOne);
   mainDiv.appendChild(requiredSkills);
 
+  mainDiv.classList.add('mainDiv')
+  groupOne.classList.add('groupOne')
+  groupTwo.classList.add('groupTwo')
+  groupThree.classList.add('groupThree')
+  requiredSkills.classList.add('skills')
+  languageItem.classList.add('language')
+  
   return mainDiv;
 };
-
-// let makeTitle = (title, season, number) => {
-//   let titleElement = document.createElement('h3');
-//   titleElement.innerText = '';
-//   return titleElement;
-// };
-
-// //Getting photo
-
-// let makePhoto = (photo) => {
-//   let photoElement = document.createElement('img');
-//   photoElement.src = photo;
-//   return photoElement;
-// };
-
-// //getting the summary
-// let makeSummary = (summary) => {
-//   let summaryElement = document.createElement('p');
-//   summaryElement.innerText = summary
-//   return summaryElement;
-// };
