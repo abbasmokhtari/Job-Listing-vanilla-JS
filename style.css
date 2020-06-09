@@ -38,7 +38,7 @@ header img {
 .skills{
     display: flex;
     align-self: center;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     width: 30vw;
 }
 
@@ -51,4 +51,12 @@ header img {
 
 p {
     margin:0;
+}
+
+.skills div {
+    margin: 0 5px;
+    background-color: hsl(180, 89%, 93%);
+    border-radius: 3px;
+    padding: 0px 5px;
+    color: hsl(180, 29%, 42%);
 }

@@ -4,8 +4,8 @@ fetch('./data.json')
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
-    let testelement = data.map((x) => x.languages);
-    console.log(testelement);
+    // let testelement = data.map((x) => x.languages);
+    // console.log(testelement);
     data
       .map((x) =>
         mainBlock(
@@ -48,7 +48,7 @@ const mainBlock = (
   let requiredSkills = document.createElement('div');
   let roleItem = document.createElement('div');
   let levelItem = document.createElement('div');
-  let languageItem = document.createElement('div');
+  // let languageItem = document.createElement('div');
 
   //css groups
   let groupOne = document.createElement('div');
@@ -82,8 +82,8 @@ const mainBlock = (
 
   requiredSkills.appendChild(roleItem);
   requiredSkills.appendChild(levelItem);
-  arrayValue(languages, languageItem);
-  requiredSkills.appendChild(languageItem);
+  arrayValue(languages, requiredSkills);
+  // requiredSkills.appendChild(languageItem);
 
   groupThree.appendChild(companyName);
   groupThree.appendChild(newItem);
@@ -104,7 +104,7 @@ const mainBlock = (
   groupTwo.classList.add('groupTwo')
   groupThree.classList.add('groupThree')
   requiredSkills.classList.add('skills')
-  languageItem.classList.add('language')
+  // languageItem.classList.add('language')
   
   return mainDiv;
 };
